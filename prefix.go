@@ -21,6 +21,9 @@ func prefixFromQuery(query url.Values) Prefix {
 	}
 	_, prefix.HasPrefix = query["prefix"]
 	_, prefix.HasDelimiter = query["delimiter"]
+	if prefix.Delimiter == "" {
+		prefix.HasDelimiter = false
+	}
 	return prefix
 }
 
