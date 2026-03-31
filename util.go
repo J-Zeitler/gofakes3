@@ -78,9 +78,6 @@ func (cr *contextReader) WriteTo(w io.Writer) (int64, error) {
 	if err := cr.ctx.Err(); err != nil {
 		return 0, err
 	}
-	if wt, ok := cr.r.(io.WriterTo); ok {
-		return wt.WriteTo(w)
-	}
-	buf := make([]byte, 4<<20)
+	buf := make([]byte, 4<<10)
 	return io.CopyBuffer(w, cr.r, buf)
 }
